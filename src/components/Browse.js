@@ -8,6 +8,7 @@ import useTopRated from "../hooks/useTopRated";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import GptSearch from "./GptSearch";
 import { useSelector } from "react-redux";
+import { BG_URL } from "../utils/constants";
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -18,6 +19,7 @@ const Browse = () => {
   return (
     <div>
       <Header />
+
       {showGptSearch ? (
         <GptSearch />
       ) : (
