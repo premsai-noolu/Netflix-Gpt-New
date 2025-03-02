@@ -40,12 +40,13 @@ const Login = () => {
       ).then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log(user);
+        console.log("userCredential.user =>", user);
         updateProfile(user, {
           displayName: name.current.value,
           photoURL: USER_AVATAR,
         })
           .then(() => {
+            console.log("auth.currentUser =>", auth.currentUser);
             const { uid, email, displayName, photoURL } = auth.currentUser;
             dispatch(
               addUser({
@@ -77,6 +78,14 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
+          // dispatch(
+          //   addUser({
+          //     uid: user.uid,
+          //     email: user.email,
+          //     displayName: user.displayName,
+          //     photoURL: user.photoURL,
+          //   })
+          // );
           // ...
         })
         .catch((error) => {
@@ -89,9 +98,9 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <div className="absolute">
+      <div className="absolute flex justify-center items-center w-full">
         <img
-          className="h-screen object-cover"
+          className="w-full h-screen object-cover"
           src={BG_URL}
           alt="background-netflix-logo"
         />
@@ -100,7 +109,7 @@ const Login = () => {
         className=" w-full md:w-3/12 absolute bg-black p-12 my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
         onSubmit={(e) => e.preventDefault()}
       >
-        <h1 className="text-3xl py-4">
+        <h1 className="text-3xl py-4 text-center">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
         {!isSignInForm && (
